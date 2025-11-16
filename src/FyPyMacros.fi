@@ -1,0 +1,42 @@
+!############################################################################################
+!
+!     ______      ____       
+!    / ____/_  __/ __ \__  __
+!   / /_  / / / / /_/ / / / /
+!  / __/ / /_/ / ____/ /_/ / 
+! /_/    \__, /_/    \__, /  
+!       /____/      /____/   
+!
+!> \brief       FyPy Include file
+!! \details     It provides Python/C API macros common to all modules
+!! \author      Bharat Mahajan
+!! \date        Created: 08/07/2019    
+!
+!############################################################################################
+
+
+
+
+! See CPython's Object.h
+
+! Py_DEBUG implies Py_TRACE_REFS
+
+#if defined(Py_DEBUG) && !defined(Py_TRACE_REFS)
+#define Py_TRACE_REFS
+#endif
+
+! Py_TRACE_REFS implies Py_REF_DEBUG
+#if defined(Py_TRACE_REFS) && !defined(Py_REF_DEBUG)
+#define Py_REF_DEBUG
+#endif
+
+
+#ifdef Py_TRACE_REFS
+#define _PyObject_EXTRA_INIT 0, 0,
+#else
+#define _PyObject_EXTRA_INIT
+#endif
+
+
+
+
